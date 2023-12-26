@@ -4,7 +4,7 @@ import logo from '../assets/svg/skyFolio.svg'
 
 const Navbar = () => {
   return (
-    <header className=' w-full h-16 flex justify-between items-center px-2 pt-2 sm:pt-4 sm:px-4 md:px-8 lg:px-16 '>
+    <header className='header w-full h-16 flex justify-between items-center px-2 pt-2 sm:pt-4 sm:px-4 md:px-8 lg:px-16 '>
         <figure className='home h-12 w-12 overflow-hidden '>
            <NavLink to={'/'}>
             <img src={logo} alt="sky logo" className='h-full w-full'/>

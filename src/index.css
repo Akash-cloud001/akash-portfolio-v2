@@ -11,6 +11,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+#canvas{
+  height: 100vh !important;
+  width: 100% !important;
+}
 .font-alegrerya{
   font-family: 'Alegreya', serif;
+}
+.z-index{
+  z-index: 1000;
+}
+@layer utilities{
+  .header {
+    @apply flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto absolute top-0 bg-transparent z-10 right-0 left-0;
+  }
 }
