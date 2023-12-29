@@ -36,7 +36,7 @@ const Navbar = () => {
                 </button>}
                     {navigations.map((ele)=>{
                         return(
-                            <NavLink to={ele.to} className={({isActive})=>isActive?"logo_color":'text-white'} onClick={handleClick}>
+                            <NavLink to={ele.to} className={({isActive})=>isActive?"logo_color":'text-white hover:text-logo-color transition-colors'} onClick={handleClick}>
                                 {ele.name}
                             </NavLink>
                         )
