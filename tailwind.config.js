@@ -11,6 +11,9 @@ export default {
       },
       colors:{
         'logo-color':'#6919FF'
+      },
+      inset:{
+        '1/8':'12.5%'
       }
     },
   },

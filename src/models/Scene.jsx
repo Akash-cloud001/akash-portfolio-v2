@@ -8,7 +8,7 @@ import scene from '../assets/3D/scene.glb';
 import { useFrame, useThree } from "@react-three/fiber";
 import {a} from '@react-spring/three';
 
-const Scene = ({isRotating, setIsRotating, setIsTouched, ...props}) => {
+const Scene = ({isRotating, setIsRotating, currentStage, setCurrentStage, setIsTouched, ...props}) => {
   const { nodes, materials } = useGLTF(scene);
   
 
@@ -35,11 +35,11 @@ const Scene = ({isRotating, setIsRotating, setIsTouched, ...props}) => {
         if(isRotating){
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const delta = (clientX - lastX.current) / viewport.width;
-            sceneRef.current.rotation.y += delta * 0.01 * Math.PI;
+            sceneRef.current.rotation.y += delta * 0.005 * Math.PI;
             
             lastX.current = clientX;
             
-            rotationSpeed.current = delta * 0.01 * Math.PI; 
+            rotationSpeed.current = delta * 0.0075 * Math.PI; 
         }
     }
 
@@ -70,7 +70,7 @@ const Scene = ({isRotating, setIsRotating, setIsTouched, ...props}) => {
         if(!isRotating){
             rotationSpeed.current *= dampingFactor;
 
-            if(Math.abs(rotationSpeed.current) < 0.001){
+            if(Math.abs(rotationSpeed.current) < 0.005){
                 rotationSpeed.current = 0;
             }
             sceneRef.current.y += rotationSpeed.current;
@@ -78,34 +78,24 @@ const Scene = ({isRotating, setIsRotating, setIsTouched, ...props}) => {
         else{
             const rotation = sceneRef.current.rotation.y;
             const normalizedRotation =
-        (rotation % (2 * Math.PI));
-
-    //   switch(true){
-    //     case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
-    //       setCurrentStage(4);
-    //     break;
-        
-    //     case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
-    //       setCurrentStage(3);
-    //     break;
-
-    //     case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
-    //       setCurrentStage(2);
-    //     break;
-
-    //     case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
-    //       setCurrentStage(1);
-    //     break;
-
-    //     default:
-    //       setCurrentStage(null);
-    //   }
+            ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+          if(0.4 >= normalizedRotation && normalizedRotation >= 0.001 || 6.3>=normalizedRotation && normalizedRotation >= 6){
+            setCurrentStage(4);
+          }
+          else if(1.5 >= normalizedRotation && normalizedRotation >= 1.1){
+            setCurrentStage(3);
+          }
+          else if(3.1 >= normalizedRotation && normalizedRotation >= 2.7){
+            setCurrentStage(2);
+          }
+          else if(4.3 >= normalizedRotation && normalizedRotation >= 3.8){
+            setCurrentStage(1);
+          }
+          else{
+            setCurrentStage(null);
+          }
         }
     })
-
-
-
-
 
   return (
     <a.group {...props} ref={sceneRef}>

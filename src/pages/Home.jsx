@@ -6,6 +6,7 @@ import dragIcon from '../assets/svg/mouse.svg';
 import { Environment, Stars } from '@react-three/drei';
 import * as THREE from 'three'
 import Scene from '../models/Scene';
+import Popup from '../components/Popup';
 const Home = () => {
   
   //? States
@@ -54,6 +55,7 @@ const Home = () => {
       </div>
 
       {/* pop up's */}
+      {currentStage && <Popup currentStage={currentStage} />}
 
       <Canvas
         className={`w-full bg-transparent overflow-hidden ${isRotating ? "cursor-grabbing": "cursor-grab"}`}
@@ -68,7 +70,7 @@ const Home = () => {
           {/* Lights */}
           <ambientLight intensity={0.5}  args={['white']}/>
           <directionalLight args={['#35227A', 1]}  position={[-3,0,0]} />
-          <directionalLight args={['#FF4400', 0.5]}  position={[0,1,0]} />
+          <directionalLight args={['white', 0.5]}  position={[0,1,0]} />
           <directionalLight args={['white', 2]}  position={[3,0,0]} />
 
           {/* Scene */}
@@ -77,6 +79,7 @@ const Home = () => {
             position={islandPosition} 
             scale={islandScale}
             setCurrentStage = {setCurrentStage}
+            currentStage = {currentStage}
             isRotating = {isRotating}
             setIsRotating = {setIsRotating}
             setIsTouched = {setIsTouched}
