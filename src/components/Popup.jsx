@@ -15,7 +15,6 @@ const TextInfo = ({title,text,url})=>{
 }
 
 const Popup = ({currentStage}) => {
-    console.log(currentStage)
     const pages = {
         1:(
             <div className='popup-container'>

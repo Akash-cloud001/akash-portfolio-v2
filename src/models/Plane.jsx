@@ -15,7 +15,6 @@ const Plane = ({isRotating, ...props})=> {
     planeGlb
   );
   const { actions, names } = useAnimations(animations, planeRef);
-  console.log(actions,names);
   useEffect(()=>{
         actions[names[0]].play();
   })

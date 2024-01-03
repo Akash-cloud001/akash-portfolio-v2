@@ -39,7 +39,7 @@ const Scene = ({isRotating, setIsRotating, currentStage, setCurrentStage, setIsT
             
             lastX.current = clientX;
             
-            rotationSpeed.current = delta * 0.0075 * Math.PI; 
+            rotationSpeed.current = delta * 0.075 * Math.PI; 
         }
     }
 
@@ -70,7 +70,7 @@ const Scene = ({isRotating, setIsRotating, currentStage, setCurrentStage, setIsT
         if(!isRotating){
             rotationSpeed.current *= dampingFactor;
 
-            if(Math.abs(rotationSpeed.current) < 0.005){
+            if(Math.abs(rotationSpeed.current) < 0.05){
                 rotationSpeed.current = 0;
             }
             sceneRef.current.y += rotationSpeed.current;

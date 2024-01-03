@@ -74,7 +74,7 @@ const Home = () => {
 
   return (
     <section className='h-screen w-full overflow-hidden'>
-      {/* <Loader /> */}
+      <Loader />
       {/* helper */}
       <div className={`${isTouched? 'hidden': 'block'} z-50 absolute top-20 left-1/2 -translate-x-1/2 font-just font-bold text-xl text-orange-color  flex justify-items-center items-center`}>
         Drag to Move

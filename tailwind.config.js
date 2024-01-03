@@ -11,7 +11,8 @@ export default {
       },
       colors:{
         'logo-color':'#6919FF',
-        'orange-color': '#ff651c'
+        'orange-color': '#ff651c',
+        'dark-color':'#0f0f0f'
       },
       inset:{
         '1/5':'20%',
