@@ -35,7 +35,7 @@ const Scene = ({isRotating, setIsRotating, currentStage, setCurrentStage, setIsT
         if(isRotating){
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const delta = (clientX - lastX.current) / viewport.width;
-            sceneRef.current.rotation.y += delta * 0.005 * Math.PI;
+            sceneRef.current.rotation.y += delta * 0.01 * Math.PI;
             
             lastX.current = clientX;
             

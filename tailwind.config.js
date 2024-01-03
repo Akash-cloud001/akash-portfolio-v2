@@ -10,11 +10,15 @@ export default {
         '3px': '3px'
       },
       colors:{
-        'logo-color':'#6919FF'
+        'logo-color':'#6919FF',
+        'orange-color': '#ff651c'
       },
       inset:{
-        '1/8':'12.5%'
-      }
+        '1/5':'20%',
+        '1/8':'12.5%',
+        '15/2':'7.5%'
+      },
+
     },
   },
   plugins: [],

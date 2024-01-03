@@ -7,9 +7,11 @@ import { Environment, Stars } from '@react-three/drei';
 import * as THREE from 'three'
 import Scene from '../models/Scene';
 import Popup from '../components/Popup';
+import Plane from '../models/Plane';
 const Home = () => {
   
   //? States
+  const [canvasHeight] = useState(window.innerHeight);
   const [isTouched, setIsTouched] = useState(false);
   const [currentStage, setCurrentStage] = useState(1);
   const [isRotating, setIsRotating] = useState(false);
@@ -26,10 +28,10 @@ const Home = () => {
 
   const handleScreenSize = ()=>{
     let screenPosition = [0,-1,-3];
-    let screenRotation = [angleToRadians(5),angleToRadians(-150),0];
+    let screenRotation = [angleToRadians(5),angleToRadians(-120),0];
     let screenScale = 0.09;
 
-    if(window.innerWidth < 768 && window.innerWidth > 575){
+    if(window.innerWidth <= 768 && window.innerWidth > 575){
       // Todo
       screenScale = 0.08;
     }
@@ -43,13 +45,38 @@ const Home = () => {
     }
     return [screenPosition, screenRotation, screenScale];
   }
+
+  const handlePlaneSize = ()=>{
+    let planePosition = [-1, -0.8, 2];
+    let planeRotation = [0, angleToRadians(90), 0];
+    let planeScale = 0.2;
+
+    if(window.innerWidth <= 768 && window.innerWidth > 575){
+      // Todo
+      planePosition = [-0.5, -0.8, 2];
+      planeScale = 0.17;
+    }
+    else if(window.innerWidth < 575 && window.innerWidth > 425){
+      planePosition = [-0.5, -0.8, 2];
+      planeScale = 0.15;
+    }
+    else if(window.innerWidth < 425){
+      planePosition = [-0.4, -0.6, 2];
+      planeScale = 0.15;
+
+    }
+    return [planePosition, planeRotation, planeScale];
+  }
+
   const [islandPosition, islandRotation, islandScale] = handleScreenSize();
+  const [planePosition, planeRotation, planeScale] = handlePlaneSize();
+
 
   return (
-    <section className='h-full w-full overflow-hidden'>
-
+    <section className='h-screen w-full overflow-hidden'>
+      {/* <Loader /> */}
       {/* helper */}
-      <div className={`${isTouched? 'hidden': 'block'} z-index absolute top-20 left-1/2 -translate-x-1/2 font-alegrerya font-bold text-xl text-logo-color  flex justify-items-center items-center`}>
+      <div className={`${isTouched? 'hidden': 'block'} z-50 absolute top-20 left-1/2 -translate-x-1/2 font-just font-bold text-xl text-orange-color  flex justify-items-center items-center`}>
         Drag to Move
         <img src={dragIcon} alt="Dragging Gif" className='relative h-6 w-6 drag_animation'/>
       </div>
@@ -65,8 +92,6 @@ const Home = () => {
         shadows
 
       > 
-        <Suspense fallback={<Loader/>}>
-
           {/* Lights */}
           <ambientLight intensity={0.5}  args={['white']}/>
           <directionalLight args={['#35227A', 1]}  position={[-3,0,0]} />
@@ -85,13 +110,20 @@ const Home = () => {
             setIsTouched = {setIsTouched}
           />
           <Stars factor={4} saturation={0} fade speed={0.5}/>
+
+          <Plane 
+            position={planePosition} 
+            rotation={planeRotation} 
+            scale={planeScale} 
+            isRotating={isRotating}
+          />
+
           <Environment background>
           <mesh>
             <sphereGeometry args={[50, 100, 100]} />
             <meshBasicMaterial side={THREE.BackSide} color="black" />
           </mesh>
           </Environment>
-        </Suspense>
       </Canvas>
     </section>    
   )
