@@ -16,9 +16,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body{
-  min-height: fill-available;
-}
 
 #canvas{
   height: 100%;
@@ -63,6 +60,7 @@ body{
 .logo-animation{
   animation: logoZoom 2s linear forwards ;
 }
+
 
 @keyframes logoZoom{
   from{

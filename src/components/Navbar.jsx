@@ -37,7 +37,7 @@ const Navbar = () => {
             <div className='h-3px w-3 sm:w-4 bg-orange-color rounded'></div>
             <div className='h-3px w-6 sm:w-8 bg-orange-color rounded'></div>
         </button>}
-        <nav className={`${isClicked ? "nav_show": "nav_hide"} overflow-hidden w-60 absolute top-0 right-0  h-screen pt-16 backdrop-blur-sm display-transition z-100`}>
+        <nav className={`${isClicked ? "nav_show": "nav_hide"} overflow-hidden w-60 absolute top-0 right-0  h-screen pt-16  bg-dark-color display-transition z-100`}>
             <div className={`flex flex-col h-1/2 w-full text-center justify-around font-just font-bold text-2xl capitalize relative`}>
                 {isClicked && <button className={`absolute -top-10 right-0 text-3xl text-white pr-4 h-6`} onClick={(e)=>handleClick(e)}>
                     <div className='h-3px w-8 bg-orange-color rounded relative top-0 left-0 rotate-45'></div>
@@ -45,7 +45,7 @@ const Navbar = () => {
                 </button>}
                     {navigations.map((ele)=>{
                         return(
-                            <NavLink to={ele.to} className={({isActive})=>isActive?"logo_color":'text-white hover:text-orange-color transition-colors'} onClick={handleClick}>
+                            <NavLink to={ele.to} className={({isActive})=>isActive?"text-orange-color":'text-white hover:text-orange-color transition-colors'} onClick={handleClick}>
                                 {ele.name}
                             </NavLink>
                         )

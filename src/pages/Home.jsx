@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import Loader from '../components/Loader'
 import { angleToRadians } from '../utils/angle';
 import dragIcon from '../assets/svg/mouse.svg';
-import { Environment, Stars } from '@react-three/drei';
+import { Environment, OrbitControls, Stars } from '@react-three/drei';
 import * as THREE from 'three'
 import Scene from '../models/Scene';
 import Popup from '../components/Popup';
@@ -17,7 +17,8 @@ const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
 
   //? Ref's
-  const canvasRef = useRef(null);
+  const orbitRef = useRef();
+
 
   //? Function's
   const handleCanvas = (e)=>{
@@ -71,6 +72,12 @@ const Home = () => {
   const [islandPosition, islandRotation, islandScale] = handleScreenSize();
   const [planePosition, planeRotation, planeScale] = handlePlaneSize();
 
+  useEffect(()=>{
+    if(orbitRef.current){
+      orbitRef.current.dampingFactor = 0.09;
+      orbitRef.current.update();
+    }
+  },[])
 
   return (
     <section className='h-screen w-full overflow-hidden'>
@@ -88,10 +95,13 @@ const Home = () => {
         className={`w-full bg-transparent overflow-hidden ${isRotating ? "cursor-grabbing": "cursor-grab"}`}
         camera={{near:0.1, far:1000}}
         id="canvas"
-        ref={canvasRef}
         shadows
-
       > 
+
+          {/* Orbital Controls */}
+          <OrbitControls maxDistance={10} maxZoom={1} ref={orbitRef}/>
+
+
           {/* Lights */}
           <ambientLight intensity={0.5}  args={['white']}/>
           <directionalLight args={['#35227A', 1]}  position={[-3,0,0]} />
