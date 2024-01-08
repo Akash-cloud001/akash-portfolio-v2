@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import skyLogo from '../assets/svg/skyFolio.svg';
-import earth from '../assets/img/earth.png';
 const Loader = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [hidden, setHidden] = useState(false);

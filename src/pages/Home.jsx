@@ -8,6 +8,7 @@ import * as THREE from 'three'
 import Scene from '../models/Scene';
 import Popup from '../components/Popup';
 import Plane from '../models/Plane';
+import Music from '../components/Music';
 const Home = () => {
   
   //? States
@@ -42,7 +43,7 @@ const Home = () => {
       screenPosition = [0, -2, -2]
     }
     else if(window.innerWidth < 425){
-      screenPosition = [0, -3, -7]
+      screenPosition = [0, -2.5, -7]
 
     }
     return [screenPosition, screenRotation, screenScale];
@@ -135,6 +136,7 @@ const Home = () => {
           </mesh>
           </Environment>
       </Canvas>
+      <Music />
     </section>    
   )
 }

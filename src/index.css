@@ -104,8 +104,15 @@
     transform: translateX(50px);
   }
 }
+/* #volumeBtn + input[type="range"]{
+  display: none;
+  transition: display ease 250ms;
+}
+#volumeBtn:hover + input[type="range"]{
+  display: block;
+  transition: display ease 250ms;
 
-
+} */
 
 @layer utilities{
   .header {
