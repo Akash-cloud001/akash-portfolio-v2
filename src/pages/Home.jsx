@@ -13,7 +13,7 @@ const Home = () => {
   //? States
   const [canvasHeight] = useState(window.innerHeight);
   const [isTouched, setIsTouched] = useState(false);
-  const [currentStage, setCurrentStage] = useState(1);
+  const [currentStage, setCurrentStage] = useState(null);
   const [isRotating, setIsRotating] = useState(false);
 
   //? Ref's
@@ -28,17 +28,18 @@ const Home = () => {
   }
 
   const handleScreenSize = ()=>{
-    let screenPosition = [0,-1,-3];
-    let screenRotation = [angleToRadians(5),angleToRadians(-120),0];
+    let screenPosition = [0,-1.5,-3.5];
+    let screenRotation = [angleToRadians(5),angleToRadians(-90),0];
     let screenScale = 0.09;
 
     if(window.innerWidth <= 768 && window.innerWidth > 575){
       // Todo
+      screenPosition = [0 , -2 , -4]
       screenScale = 0.08;
     }
     else if(window.innerWidth < 575 && window.innerWidth > 425){
       screenScale = 0.06;
-      screenPosition = [0, -1.5, -2]
+      screenPosition = [0, -2, -2]
     }
     else if(window.innerWidth < 425){
       screenPosition = [0, -3, -7]
@@ -48,17 +49,17 @@ const Home = () => {
   }
 
   const handlePlaneSize = ()=>{
-    let planePosition = [-1, -0.8, 2];
+    let planePosition = [-1, 0, 2];
     let planeRotation = [0, angleToRadians(90), 0];
     let planeScale = 0.2;
 
     if(window.innerWidth <= 768 && window.innerWidth > 575){
       // Todo
-      planePosition = [-0.5, -0.8, 2];
+      planePosition = [-0.5, 0, 2];
       planeScale = 0.17;
     }
     else if(window.innerWidth < 575 && window.innerWidth > 425){
-      planePosition = [-0.5, -0.8, 2];
+      planePosition = [-0.5, 0, 2];
       planeScale = 0.15;
     }
     else if(window.innerWidth < 425){
@@ -127,11 +128,10 @@ const Home = () => {
             scale={planeScale} 
             isRotating={isRotating}
           />
-
           <Environment background>
           <mesh>
             <sphereGeometry args={[50, 100, 100]} />
-            <meshBasicMaterial side={THREE.BackSide} color="black" />
+            <meshBasicMaterial side={THREE.BackSide} color="#0f0f0f" />
           </mesh>
           </Environment>
       </Canvas>

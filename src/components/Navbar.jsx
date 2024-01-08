@@ -29,7 +29,7 @@ const Navbar = () => {
         if(window.innerWidth < 768){
             return ;
         }
-        console.log(event.target.innerText, event.target.getAttribute('data-value'));
+        
         let iterationCount = 0;
         
         const interval =  setInterval(()=>{

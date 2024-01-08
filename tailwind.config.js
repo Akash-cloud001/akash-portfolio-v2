@@ -7,7 +7,12 @@ export default {
   theme: {
     extend: {
       height:{
-        '3px': '3px'
+        '3px': '3px',
+        '200vh':'200vh',
+        'custom': 'calc(100vh - 64px)'
+      },
+      minHeight:{
+        'custom':'calc(100vh - 64px)'
       },
       colors:{
         'logo-color':'#6919FF',
